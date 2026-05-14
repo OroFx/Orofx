@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { supabase } from '@/lib/supabase';
 
 interface ContactFormModalProps {
   open: boolean;
@@ -47,7 +46,6 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ open, onClose }) =>
 
   const handleClose = () => {
     onClose();
-    // small delay before reset so UI doesn't flash
     setTimeout(resetForm, 300);
   };
 
@@ -61,31 +59,18 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ open, onClose }) =>
     setErrorMsg('');
 
     try {
-      // Also add to CRM
-      fetch('https://famous.ai/api/crm/69a99c4dc049533ccd31d2fe/subscribe', {
+      const response = await fetch('/api/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          vorname: firstName.trim(),
+          nachname: lastName.trim(),
           email: email.trim(),
-          name: `${firstName.trim()} ${lastName.trim()}`.trim(),
-          source: 'contact-form',
-          tags: ['consultation-request', 'orofx'],
+          nachricht: message.trim(),
         }),
-      }).catch(() => { /* non-blocking */ });
-
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          firstName: firstName.trim(),
-          lastName: lastName.trim(),
-          email: email.trim(),
-          message: message.trim(),
-        },
       });
 
-      if (error) throw new Error(error.message || 'Send failed');
-      if (data && (data as { error?: string }).error) {
-        throw new Error((data as { error?: string }).error);
-      }
+      if (!response.ok) throw new Error('Send failed');
 
       setStatus('success');
     } catch (err) {
@@ -106,21 +91,17 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ open, onClose }) =>
       aria-modal="true"
       aria-labelledby="contact-modal-title"
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={handleClose}
       />
 
-      {/* Modal */}
       <div
         className="relative z-10 w-full max-w-lg rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
         style={{ background: '#0D0F14' }}
       >
-        {/* Subtle glow */}
         <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#2E8BFF]/10 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Close button */}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center rounded-lg text-[#9CA3AF] hover:text-white hover:bg-white/5 transition-colors"
