@@ -21,7 +21,6 @@ const Footer: React.FC<FooterProps> = ({ onOpenContact, onOpenComplaint }) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
-          {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#2E8BFF] to-[#5BA4FF] flex items-center justify-center">
@@ -37,8 +36,6 @@ const Footer: React.FC<FooterProps> = ({ onOpenContact, onOpenComplaint }) => {
             <p className="text-[#9CA3AF] text-sm leading-relaxed max-w-sm mb-6">
               {t('footer.desc')}
             </p>
-
-            {/* Three paths quick links */}
             <div className="space-y-2 mb-6">
               <button
                 onClick={() => window.open(TELEGRAM_URL, '_blank')}
@@ -62,7 +59,6 @@ const Footer: React.FC<FooterProps> = ({ onOpenContact, onOpenComplaint }) => {
                 {t('paths.p3.title')}
               </button>
             </div>
-
             <div className="flex items-center gap-3">
               
                 href={TELEGRAM_URL}
@@ -77,7 +73,6 @@ const Footer: React.FC<FooterProps> = ({ onOpenContact, onOpenComplaint }) => {
             </div>
           </div>
 
-          {/* Navigation */}
           <div>
             <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('footer.navigate')}</h4>
             <ul className="space-y-3">
@@ -99,7 +94,6 @@ const Footer: React.FC<FooterProps> = ({ onOpenContact, onOpenComplaint }) => {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{t('footer.getStarted')}</h4>
             <ul className="space-y-3">
@@ -142,7 +136,6 @@ const Footer: React.FC<FooterProps> = ({ onOpenContact, onOpenComplaint }) => {
 
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[#9CA3AF]/60 text-xs">
             &copy; {new Date().getFullYear()} OroFx. {t('footer.rights')}
