@@ -81,6 +81,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenComplaint }) => {
   };
   const nextLang = languages[(languageOrder.indexOf(language) + 1) % languageOrder.length];
 
+  const pathLabel = language === 'de' ? 'Wähle deinen Weg' : language === 'it' ? 'Scegli il tuo percorso' : 'Choose your path';
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#0D0F14]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,33 +141,71 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenComplaint }) => {
 
             {/* Actions Dropdown */}
             <div ref={actionsRef} className="relative">
-              <button onClick={() => setActionsOpen(!actionsOpen)} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#2E8BFF] text-white text-sm font-semibold hover:bg-[#5BA4FF] hover:shadow-[0_0_30px_rgba(46,139,255,0.4)] transition-all duration-300">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+              <button
+                onClick={() => setActionsOpen(!actionsOpen)}
+                className="relative flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white transition-all duration-300 cursor-pointer border border-[#2E8BFF]/40 bg-[#2E8BFF]/10 hover:bg-[#2E8BFF]/20 hover:border-[#2E8BFF] hover:shadow-[0_0_30px_rgba(46,139,255,0.3)]"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#5BA4FF]">
+                  <path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
                 </svg>
-                {t('nav.joinSignalBot')}
-                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${actionsOpen ? 'rotate-180' : ''}`} />
+                <span className="text-[#5BA4FF]">{pathLabel}</span>
+                <ChevronDown className={`w-3 h-3 text-[#5BA4FF] transition-transform duration-200 ${actionsOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {actionsOpen && (
-                <div className="absolute top-full right-0 mt-2 w-56 rounded-xl border border-white/10 bg-[#151821] backdrop-blur-xl shadow-2xl overflow-hidden">
-                  <button onClick={() => { window.open(TELEGRAM_URL, '_blank'); setActionsOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-[#9CA3AF] hover:bg-[#2E8BFF]/10 hover:text-[#5BA4FF] transition-all duration-200">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-[#2E8BFF]">
-                      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.br-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                    </svg>
-                    {t('paths.p1.title')}
+                <div className="absolute top-full right-0 mt-2 w-64 rounded-xl border border-white/10 bg-[#151821] backdrop-blur-xl shadow-2xl overflow-hidden">
+                  {/* Header */}
+                  <div className="px-4 py-3 border-b border-white/5">
+                    <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-wider">{pathLabel}</p>
+                  </div>
+
+                  {/* Telegram */}
+                  <button
+                    onClick={() => { window.open(TELEGRAM_URL, '_blank'); setActionsOpen(false); }}
+                    className="w-full flex items-center gap-3 px-4 py-4 hover:bg-[#2E8BFF]/10 transition-all duration-200 group"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-[#2E8BFF]/10 border border-[#2E8BFF]/30 flex items-center justify-center group-hover:bg-[#2E8BFF]/20 transition-colors">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-[#2E8BFF]">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white text-sm font-semibold">{t('paths.p1.title')}</p>
+                      <p className="text-[#9CA3AF] text-xs mt-0.5">{t('paths.p1.desc').substring(0, 40)}...</p>
+                    </div>
                   </button>
-                  <button onClick={() => { onOpenContact(); setActionsOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-[#9CA3AF] hover:bg-emerald-500/10 hover:text-emerald-400 transition-all duration-200">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
-                      <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
-                    {t('paths.p2.title')}
+
+                  {/* Investor */}
+                  <button
+                    onClick={() => { onOpenContact(); setActionsOpen(false); }}
+                    className="w-full flex items-center gap-3 px-4 py-4 hover:bg-emerald-500/10 transition-all duration-200 group border-t border-white/5"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
+                        <line x1="12" y1="1" x2="12" y2="23" />
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white text-sm font-semibold">{t('paths.p2.title')}</p>
+                      <p className="text-[#9CA3AF] text-xs mt-0.5">{t('paths.p2.desc').substring(0, 40)}...</p>
+                    </div>
                   </button>
-                  <button onClick={() => { onOpenComplaint(); setActionsOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-[#9CA3AF] hover:bg-amber-500/10 hover:text-amber-400 transition-all duration-200">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    {t('paths.p3.title')}
+
+                  {/* Beschwerde */}
+                  <button
+                    onClick={() => { onOpenComplaint(); setActionsOpen(false); }}
+                    className="w-full flex items-center gap-3 px-4 py-4 hover:bg-amber-500/10 transition-all duration-200 group border-t border-white/5"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center group-hover:bg-amber-500/20 transition-colors">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white text-sm font-semibold">{t('paths.p3.title')}</p>
+                      <p className="text-[#9CA3AF] text-xs mt-0.5">{t('paths.p3.desc').substring(0, 40)}...</p>
+                    </div>
                   </button>
                 </div>
               )}
@@ -198,6 +238,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenComplaint }) => {
                 {item.label}
               </button>
             ))}
+
             <div className="flex items-center gap-2 pt-2 pb-2">
               {languages.map((lang) => (
                 <button key={lang.code} onClick={() => setLanguage(lang.code)} className={`flex items-center gap-1.5 px-3 py-2 rounded-lg border transition-all duration-300 cursor-pointer ${language === lang.code ? 'border-[#2E8BFF]/50 bg-[#2E8BFF]/10 text-[#5BA4FF]' : 'border-white/10 bg-white/5 text-[#9CA3AF] hover:bg-white/10'}`}>
@@ -206,18 +247,34 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenComplaint }) => {
                 </button>
               ))}
             </div>
-            <div className="pt-2 space-y-3">
-              <button onClick={() => { window.open(TELEGRAM_URL, '_blank'); setMobileMenuOpen(false); }} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#2E8BFF] text-white text-sm font-semibold hover:bg-[#5BA4FF] transition-all">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                </svg>
-                {t('paths.p1.cta')}
+
+            <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-wider pt-2">{pathLabel}</p>
+
+            <div className="space-y-3">
+              <button onClick={() => { window.open(TELEGRAM_URL, '_blank'); setMobileMenuOpen(false); }} className="w-full flex items-center gap-3 py-3 px-4 rounded-xl border border-[#2E8BFF]/30 bg-[#2E8BFF]/10 hover:bg-[#2E8BFF]/20 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#2E8BFF]/20 flex items-center justify-center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-[#2E8BFF]">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                  </svg>
+                </div>
+                <span className="text-[#5BA4FF] text-sm font-semibold">{t('paths.p1.title')}</span>
               </button>
-              <button onClick={() => { onOpenContact(); setMobileMenuOpen(false); }} className="w-full py-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-sm font-medium hover:bg-emerald-500/20 transition-all">
-                {t('paths.p2.cta')}
+              <button onClick={() => { onOpenContact(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-3 py-3 px-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                </div>
+                <span className="text-emerald-400 text-sm font-semibold">{t('paths.p2.title')}</span>
               </button>
-              <button onClick={() => { onOpenComplaint(); setMobileMenuOpen(false); }} className="w-full py-3 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-400 text-sm font-medium hover:bg-amber-500/20 transition-all">
-                {t('paths.p3.cta')}
+              <button onClick={() => { onOpenComplaint(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-3 py-3 px-4 rounded-xl border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-400">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <span className="text-amber-400 text-sm font-semibold">{t('paths.p3.title')}</span>
               </button>
             </div>
           </div>
