@@ -8,15 +8,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { vorname, nachname, email, nachricht } = req.body;
+  const { vorname, nachname, email, nachricht, telefon, type } = req.body;
+
+  const isComplaint = type === 'complaint';
 
   try {
     await resend.emails.send({
       from: 'OroFx <noreply@orofx.ch>',
       to: 'tibryan@gmx.ch',
-      subject: `Beratungsanfrage von ${vorname} ${nachname}`,
-      html: `
-        <h2>Neue Beratungsanfrage</h2>
+      subject: isComplaint
+        ? `Neue Beschwerde von ${vorname} ${nachname}`
+        : `Neue Beratungsanfrage von ${vorname} ${nachname}`,
+      html: isComplaint ? `
+        <h2>Neue Beschwerde – OroFx Recovery</h2>
+        <p><strong>Name:</strong> ${vorname} ${nachname}</p>
+        <p><strong>E-Mail:</strong> ${email}</p>
+        <p><strong>Telefon:</strong> ${telefon || '-'}</p>
+        <p><strong>Beschreibung:</strong></p>
+        <p>${nachricht}</p>
+      ` : `
+        <h2>Neue Beratungsanfrage – OroFx</h2>
         <p><strong>Name:</strong> ${vorname} ${nachname}</p>
         <p><strong>E-Mail:</strong> ${email}</p>
         <p><strong>Nachricht:</strong></p>

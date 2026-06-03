@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AnimatedSection from './AnimatedSection';
 import GlowButton from './GlowButton';
-import ContactFormModal from './ContactFormModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const TELEGRAM_URL = 'https://t.me/OroFxBot';
 
+interface FinalCTASectionProps {
+  onOpenContact: () => void;
+  onOpenComplaint: () => void;
+}
 
-const FinalCTASection: React.FC = () => {
+const FinalCTASection: React.FC<FinalCTASectionProps> = ({ onOpenContact, onOpenComplaint }) => {
   const { t } = useLanguage();
-  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <section className="relative py-24 sm:py-40 overflow-hidden" style={{ background: '#0D0F14' }}>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[#2E8BFF]/8 rounded-full blur-[150px]" />
-
       <div
         className="absolute inset-0 opacity-5"
         style={{
@@ -53,6 +54,7 @@ const FinalCTASection: React.FC = () => {
           </p>
         </AnimatedSection>
 
+        {/* Three paths guide */}
         <AnimatedSection delay={750}>
           <div className="max-w-2xl mx-auto mb-10 text-left rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm p-6 sm:p-7 space-y-5">
             <p className="text-[#D1D5DB] text-base sm:text-lg leading-relaxed">
@@ -68,25 +70,42 @@ const FinalCTASection: React.FC = () => {
           </div>
         </AnimatedSection>
 
+        {/* 3 Buttons */}
         <AnimatedSection delay={800}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+
+            {/* Telegram */}
             <GlowButton size="large" onClick={() => window.open(TELEGRAM_URL, '_blank')}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
               </svg>
               {t('cta.primary')}
             </GlowButton>
 
-            <GlowButton size="large" variant="secondary" onClick={() => setContactOpen(true)}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
+            {/* Investor */}
+            <button
+              onClick={onOpenContact}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-sm font-medium hover:bg-emerald-500/20 transition-all duration-200"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
               </svg>
-              {t('cta.contact')}
-            </GlowButton>
+              {t('paths.p2.cta')}
+            </button>
+
+            {/* Beschwerde */}
+            <button
+              onClick={onOpenComplaint}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-400 text-sm font-medium hover:bg-amber-500/20 transition-all duration-200"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              {t('paths.p3.cta')}
+            </button>
           </div>
         </AnimatedSection>
-
 
         <AnimatedSection delay={1000}>
           <div className="flex flex-wrap items-center justify-center gap-6 text-[#9CA3AF] text-sm">
@@ -101,8 +120,6 @@ const FinalCTASection: React.FC = () => {
           </div>
         </AnimatedSection>
       </div>
-
-      <ContactFormModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </section>
   );
 };

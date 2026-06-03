@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './orofx/Navbar';
 import HeroSection from './orofx/HeroSection';
 import TrustBadgesSection from './orofx/TrustBadgesSection';
@@ -13,26 +13,60 @@ import TestimonialsSection from './orofx/TestimonialsSection';
 import FAQSection from './orofx/FAQSection';
 import FinalCTASection from './orofx/FinalCTASection';
 import Footer from './orofx/Footer';
-import StickyTelegramCTA from './orofx/StickyTelegramCTA';
+import ContactFormModal from './orofx/ContactFormModal';
+import ComplaintFormModal from './orofx/ComplaintFormModal';
+import ThreePathsSection from './orofx/ThreePathsSection';
+import RecoverySection from './orofx/RecoverySection';
 
 const AppLayout: React.FC = () => {
+  const [contactOpen, setContactOpen] = useState(false);
+  const [complaintOpen, setComplaintOpen] = useState(false);
+
   return (
     <div className="min-h-screen" style={{ background: '#0D0F14', color: '#FFFFFF' }}>
-      <Navbar />
-      <HeroSection />
+      <Navbar
+        onOpenContact={() => setContactOpen(true)}
+        onOpenComplaint={() => setComplaintOpen(true)}
+      />
+      <HeroSection
+        onOpenContact={() => setContactOpen(true)}
+        onOpenComplaint={() => setComplaintOpen(true)}
+      />
       <TrustBadgesSection />
+      <ThreePathsSection
+        onOpenContact={() => setContactOpen(true)}
+        onOpenComplaint={() => setComplaintOpen(true)}
+      />
       <ProblemSection />
       <MarketRealitySection />
       <USPSection />
-      <HowItWorksSection />
+      <HowItWorksSection
+        onOpenComplaint={() => setComplaintOpen(true)}
+      />
       <TransparencySection />
       <BenefitsSection />
       <LifestyleSection />
+      <RecoverySection
+        onOpenComplaint={() => setComplaintOpen(true)}
+      />
       <TestimonialsSection />
       <FAQSection />
-      <FinalCTASection />
-      <Footer />
-      <StickyTelegramCTA />
+      <FinalCTASection
+        onOpenContact={() => setContactOpen(true)}
+        onOpenComplaint={() => setComplaintOpen(true)}
+      />
+      <Footer
+        onOpenContact={() => setContactOpen(true)}
+        onOpenComplaint={() => setComplaintOpen(true)}
+      />
+      <ContactFormModal
+        open={contactOpen}
+        onClose={() => setContactOpen(false)}
+      />
+      <ComplaintFormModal
+        open={complaintOpen}
+        onClose={() => setComplaintOpen(false)}
+      />
     </div>
   );
 };

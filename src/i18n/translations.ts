@@ -81,7 +81,6 @@ const en = {
   'how.step2.title': 'Account Setup',
   'how.step2.desc': 'Create a free account with our partner broker. It takes less than 5 minutes. Your money stays in your account.',
   'how.step2.action': 'Open Broker Account',
-
   'how.step3.title': 'Copy the trades we send.',
   'how.step3.desc': 'Receive clear signals with Entry, Stop Loss, and Take Profit. Simply copy them into your broker. Done.',
   'how.bottom': 'That\'s it. ',
@@ -186,7 +185,6 @@ const en = {
   'faq.a7': 'Our historical win rate is approximately 82-88%. All results are transparently shared and verifiable. Past performance does not guarantee future results.',
 
   // Final CTA
-
   'cta.badge': 'Signals are live right now',
   'cta.headline1': 'Stop guessing.',
   'cta.headline2': 'Start trading with real signals.',
@@ -213,7 +211,6 @@ const en = {
   'contact.error': 'Something went wrong. Please try again.',
   'contact.required': 'Required field',
 
-
   // Footer
   'footer.desc': 'Transparent Forex Trading Signals. Your money stays on your own broker account. We earn through broker commission only.',
   'footer.navigate': 'Navigate',
@@ -226,8 +223,45 @@ const en = {
 
   // Sticky CTA
   'sticky.cta': 'Join OroFx Telegram',
-} as const;
 
+  // Recovery Section
+  'recovery.label': 'Were you scammed?',
+  'recovery.headline1': 'Lost crypto to fraud?',
+  'recovery.headline2': 'We get it back.',
+  'recovery.desc': 'Through our partnerships with Binance, Crypto.com and other major exchanges, we trace and recover lost funds for fraud victims.',
+  'recovery.cta': 'File a Complaint',
+  'recovery.feat1.title': 'Exchange Partnerships',
+  'recovery.feat1.desc': 'Direct access to compliance teams at major exchanges.',
+  'recovery.feat2.title': 'Blockchain Tracing',
+  'recovery.feat2.desc': 'We follow your funds on the blockchain.',
+  'recovery.feat3.title': 'No Upfront Fees',
+  'recovery.feat3.desc': 'We only get paid when we recover your funds.',
+
+  // Complaint Form
+  'complaint.title': 'File a Complaint',
+  'complaint.subtitle': 'Tell us what happened. We will contact you within 24 hours.',
+  'complaint.firstName': 'First name',
+  'complaint.lastName': 'Last name',
+  'complaint.email': 'Email address',
+  'complaint.phone': 'Phone number',
+  'complaint.message': 'Describe what happened and how much you lost',
+  'complaint.send': 'Submit complaint',
+  'complaint.sending': 'Sending...',
+  'complaint.success': 'Your complaint has been submitted. We will contact you within 24 hours.',
+  'complaint.error': 'Something went wrong. Please try again.',
+
+  // Three Paths
+  'paths.label': 'Three ways we can help',
+  'paths.p1.title': 'Get Trading Signals',
+  'paths.p1.desc': 'Join our Telegram and receive real-time forex signals from professional traders.',
+  'paths.p1.cta': 'Join Telegram',
+  'paths.p2.title': 'Start as Investor',
+  'paths.p2.desc': 'Interested in investing? Contact us for a personal consultation.',
+  'paths.p2.cta': 'Request Consultation',
+  'paths.p3.title': 'Recover Lost Funds',
+  'paths.p3.desc': 'Lost money to crypto fraud? We work with exchanges to get it back.',
+  'paths.p3.cta': 'File a Complaint',
+} as const;
 
 const de: typeof en = {
   // Navbar
@@ -308,7 +342,6 @@ const de: typeof en = {
   'how.step2.title': 'Account Setup',
   'how.step2.desc': 'Erstelle ein kostenloses Konto bei unserem Partner-Broker. Es dauert weniger als 5 Minuten. Dein Geld bleibt auf deinem Konto.',
   'how.step2.action': 'Broker Konto eröffnen',
-
   'how.step3.title': 'Kopiere die Trades, die wir senden.',
   'how.step3.desc': 'Erhalte klare Signale mit Entry, Stop Loss und Take Profit. Kopiere sie einfach in deinen Broker. Fertig.',
   'how.bottom': 'Das war\'s. ',
@@ -439,7 +472,6 @@ const de: typeof en = {
   'contact.error': 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
   'contact.required': 'Pflichtfeld',
 
-
   // Footer
   'footer.desc': 'Transparente Forex Trading Signale. Dein Geld bleibt auf deinem eigenen Brokerkonto. Wir verdienen ausschließlich über Broker Provision.',
   'footer.navigate': 'Navigation',
@@ -450,9 +482,46 @@ const de: typeof en = {
   'footer.rights': 'Alle Rechte vorbehalten.',
   'footer.risk': 'Der Handel mit Forex birgt erhebliche Risiken. Vergangene Ergebnisse garantieren keine zukünftigen Resultate. Handle verantwortungsbewusst.',
 
-
   // Sticky CTA
   'sticky.cta': 'OroFx Telegram beitreten',
+
+  // Recovery Section
+  'recovery.label': 'Wurden Sie betrogen?',
+  'recovery.headline1': 'Crypto durch Betrug verloren?',
+  'recovery.headline2': 'Wir holen es zurück.',
+  'recovery.desc': 'Durch unsere Partnerschaften mit Binance, Crypto.com und anderen grossen Börsen verfolgen und holen wir verlorene Gelder für Betrugsopfer zurück.',
+  'recovery.cta': 'Beschwerde einreichen',
+  'recovery.feat1.title': 'Börsen-Partnerschaften',
+  'recovery.feat1.desc': 'Direkter Zugang zu Compliance-Teams bei grossen Börsen.',
+  'recovery.feat2.title': 'Blockchain-Verfolgung',
+  'recovery.feat2.desc': 'Wir verfolgen deine Gelder auf der Blockchain.',
+  'recovery.feat3.title': 'Keine Vorauszahlung',
+  'recovery.feat3.desc': 'Wir werden nur bezahlt wenn wir deine Gelder zurückholen.',
+
+  // Complaint Form
+  'complaint.title': 'Beschwerde einreichen',
+  'complaint.subtitle': 'Schildere uns was passiert ist. Wir melden uns innerhalb von 24 Stunden.',
+  'complaint.firstName': 'Vorname',
+  'complaint.lastName': 'Nachname',
+  'complaint.email': 'E-Mail Adresse',
+  'complaint.phone': 'Telefonnummer',
+  'complaint.message': 'Beschreibe was passiert ist und wie viel du verloren hast',
+  'complaint.send': 'Beschwerde absenden',
+  'complaint.sending': 'Wird gesendet...',
+  'complaint.success': 'Deine Beschwerde wurde eingereicht. Wir melden uns innerhalb von 24 Stunden.',
+  'complaint.error': 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
+
+  // Three Paths
+  'paths.label': 'Drei Wege wie wir helfen können',
+  'paths.p1.title': 'Trading Signale erhalten',
+  'paths.p1.desc': 'Tritt unserem Telegram bei und erhalte Echtzeit-Forex-Signale von professionellen Tradern.',
+  'paths.p1.cta': 'Telegram beitreten',
+  'paths.p2.title': 'Als Investor starten',
+  'paths.p2.desc': 'Interesse am Investieren? Kontaktiere uns für eine persönliche Beratung.',
+  'paths.p2.cta': 'Beratung anfragen',
+  'paths.p3.title': 'Verlorene Gelder zurückholen',
+  'paths.p3.desc': 'Geld durch Crypto-Betrug verloren? Wir arbeiten mit Börsen zusammen um es zurückzuholen.',
+  'paths.p3.cta': 'Beschwerde einreichen',
 };
 
 const it: typeof en = {
@@ -534,7 +603,6 @@ const it: typeof en = {
   'how.step2.title': 'Account Setup',
   'how.step2.desc': 'Crea un account gratuito con il nostro broker partner. Ci vogliono meno di 5 minuti. I tuoi soldi restano sul tuo conto.',
   'how.step2.action': 'Apri Conto Broker',
-
   'how.step3.title': 'Copia i trade che inviamo.',
   'how.step3.desc': 'Ricevi segnali chiari con Entry, Stop Loss e Take Profit. Copiali semplicemente nel tuo broker. Fatto.',
   'how.bottom': 'Tutto qui. ',
@@ -665,7 +733,6 @@ const it: typeof en = {
   'contact.error': 'Qualcosa è andato storto. Riprova.',
   'contact.required': 'Campo obbligatorio',
 
-
   // Footer
   'footer.desc': 'Segnali di Trading Forex Trasparenti. I tuoi soldi restano sul tuo conto broker. Guadagniamo solo tramite commissione broker.',
   'footer.navigate': 'Navigazione',
@@ -676,9 +743,46 @@ const it: typeof en = {
   'footer.rights': 'Tutti i diritti riservati.',
   'footer.risk': 'Il trading forex comporta rischi significativi. I risultati passati non garantiscono risultati futuri. Fai trading responsabilmente.',
 
-
   // Sticky CTA
   'sticky.cta': 'Unisciti a OroFx Telegram',
+
+  // Recovery Section
+  'recovery.label': 'Sei stato truffato?',
+  'recovery.headline1': 'Hai perso crypto per frode?',
+  'recovery.headline2': 'Li recuperiamo.',
+  'recovery.desc': 'Attraverso le nostre partnership con Binance, Crypto.com e altri exchange, tracciamo e recuperiamo i fondi persi per le vittime di frode.',
+  'recovery.cta': 'Presenta un reclamo',
+  'recovery.feat1.title': 'Partnership Exchange',
+  'recovery.feat1.desc': 'Accesso diretto ai team di compliance dei principali exchange.',
+  'recovery.feat2.title': 'Tracciamento Blockchain',
+  'recovery.feat2.desc': 'Seguiamo i tuoi fondi sulla blockchain.',
+  'recovery.feat3.title': 'Nessuna Commissione Anticipata',
+  'recovery.feat3.desc': 'Veniamo pagati solo quando recuperiamo i tuoi fondi.',
+
+  // Complaint Form
+  'complaint.title': 'Presenta un Reclamo',
+  'complaint.subtitle': 'Dicci cosa è successo. Ti contatteremo entro 24 ore.',
+  'complaint.firstName': 'Nome',
+  'complaint.lastName': 'Cognome',
+  'complaint.email': 'Indirizzo e-mail',
+  'complaint.phone': 'Numero di telefono',
+  'complaint.message': 'Descrivi cosa è successo e quanto hai perso',
+  'complaint.send': 'Invia reclamo',
+  'complaint.sending': 'Invio in corso...',
+  'complaint.success': 'Il tuo reclamo è stato inviato. Ti contatteremo entro 24 ore.',
+  'complaint.error': 'Qualcosa è andato storto. Riprova.',
+
+  // Three Paths
+  'paths.label': 'Tre modi in cui possiamo aiutarti',
+  'paths.p1.title': 'Ricevi Segnali di Trading',
+  'paths.p1.desc': 'Unisciti al nostro Telegram e ricevi segnali forex in tempo reale da trader professionisti.',
+  'paths.p1.cta': 'Unisciti a Telegram',
+  'paths.p2.title': 'Inizia come Investitore',
+  'paths.p2.desc': 'Interessato a investire? Contattaci per una consulenza personale.',
+  'paths.p2.cta': 'Richiedi consulenza',
+  'paths.p3.title': 'Recupera i Fondi Persi',
+  'paths.p3.desc': 'Hai perso soldi per frode crypto? Lavoriamo con gli exchange per recuperarli.',
+  'paths.p3.cta': 'Presenta un reclamo',
 };
 
 export const translations: Record<Language, typeof en> = { en, de, it };
